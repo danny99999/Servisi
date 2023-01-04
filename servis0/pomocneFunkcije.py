@@ -4,7 +4,7 @@ import pandas as pd
 
 async def dohvatRandomRedova(connection):
     cursor= await connection.cursor()
-    await cursor.execute("SELECT COUNT * FROM datable")
+    await cursor.execute("SELECT COUNT * FROM datatable")
     (brRedova, )= await cursor.fetchOne()
     randRowIndices= np.random.randint(0, brRedova, size= 100)
 
