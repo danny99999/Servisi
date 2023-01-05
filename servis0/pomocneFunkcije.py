@@ -16,16 +16,16 @@ async def dohvatRandomRedova(connection):
 
 async def dodavanjeuBazu():
     try:
-        dataframe= pd.read_json("dataset.json", lines=True)
+        dataframe= pd.read_json('servis0/podaci/dataset.json')
         async with aiosqlite.connect("Servisi-database.db") as db:
             for index, row in dataframe.head(10000).iterrows():
                 await db.execute("INSERT INTO datatable(username, ghlink, filename, content) VALUES (?,?,?,?)", 
                 (row.get("repo_name").split("/")[0],
                 "https://github.com/%s"%(row.get("repo_name")),
                 row.get("path").split("/")[-1],
-                row.get("conetnt")))
+                row.get("content")))
                 await db.commit()
-        print("Uspješno dodanavanje podataka u bazu.")
+        print("Uspješno dodavanje podataka u bazu.")
 
     except Exception as e:
         print("Pojavila se greška kod dodavanja podataka u bazu iz dataseta:", e)           
