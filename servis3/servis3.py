@@ -1,0 +1,27 @@
+from aiohttp import web
+from pomocneFunkcije import slanjeNaServis4
+
+odgovori= []
+
+routes= web.RouteTableDef()
+
+
+@routes.post("/")
+async def func(request):
+    global odgovori
+    try:
+        responsePodaci= await request.json()
+        if responsePodaci.get("username").lower().startswith("d"):
+            odgovor= await slanjeNaServis4(responsePodaci)
+            odgovori.append(odgovor)
+
+        return web.json_response({"naziv": "servis3", "status": "OK", "servis4 odgovori": odgovori}, status = 200)    
+
+    except Exception as e:
+        return web.json_response({"naziv": "servis3", "error": str(e)}, status = 500)
+
+
+
+app = web.Application()
+app.router.add_routes(routes)
+web.run_app(app, port = 8084)

@@ -1,21 +1,21 @@
 from aiohttp import web
 from pomocneFunkcije import SlanjeNaServis4
 
-responses = []
+odgovori = []
 routes = web.RouteTableDef()
 
 @routes.post("/")
 async def func(request):
-	global responses
+	global odgovori
 	print("here")
 	try:
-		responseData = await request.json()
+		responsePodaci = await request.json()
 
-		if responseData.get("username").lower().startswith("w"):
-			response = await SlanjeNaServis4(responseData)
-			responses.append(response)
+		if responsePodaci.get("username").lower().startswith("w"):
+			odgovor = await SlanjeNaServis4(responsePodaci)
+			odgovori.append(odgovor)
 		
-		return web.json_response({"naziv": "servis2", "status": "OK", "servis4 responses": responses}, status = 200)
+		return web.json_response({"naziv": "servis2", "status": "OK", "servis4 odgovori": odgovori}, status = 200)
 
 	except Exception as e:
 		return web.json_response({"naziv": "servis3", "error": str(e)}, status = 500)
