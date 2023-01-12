@@ -1,5 +1,6 @@
 import aiohttp
 
+
 async def forwardToWT(WTURL, podaci):
     for index in range(len(podaci)):
         async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:

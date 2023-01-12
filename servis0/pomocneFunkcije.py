@@ -18,7 +18,7 @@ async def dodavanjeuBazu():
     try:
         dataframe= pd.read_json('servis0/podaci/dataset.json', lines=True)
         async with aiosqlite.connect("Servisi-database.db") as db:
-            for index, row in dataframe.head(10000).iterrows():
+            for index, row in dataframe.head(1000).iterrows():
                 await db.execute("INSERT INTO datatable(username, ghlink, filename, content) VALUES (?,?,?,?)", 
                 (row.get("repo_name").split("/")[0],
                 "https://github.com/%s"%(row.get("repo_name")),

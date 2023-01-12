@@ -7,7 +7,7 @@ routes = web.RouteTableDef()
 @routes.post("/")
 async def func(request):
 	global odgovori
-	print("here")
+	
 	try:
 		responsePodaci = await request.json()
 
