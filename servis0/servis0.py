@@ -1,5 +1,4 @@
 import aiosqlite
-import asyncio
 from aiohttp import web
 from pomocneFunkcije import dohvatRandomRedova, dodavanjeuBazu
 
@@ -14,13 +13,13 @@ async def func(request):
                     if row[0]==0:
                         await dodavanjeuBazu()
                     podaci= await dohvatRandomRedova(db)
-                    
+
 
 
         return web.json_response({"naziv": "servis0", "status": "OK", "podaci":podaci}, status=200)
 
     except Exception as e:
-        return web.json_response({"naziv": "servis0", "error": str(e)}, status=500)           
+        return web.json_response({"naziv": "servis0", "error": str(e)}, status=500)
 
 
 app= web.Application()

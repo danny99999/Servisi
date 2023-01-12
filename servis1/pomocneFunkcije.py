@@ -5,4 +5,4 @@ async def forwardToWT(WTURL, podaci):
         async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
             async with session.post(WTURL, json= podaci[index]) as response:
                 WTResponse= await response.json()
-    return WTResponse            
+    return WTResponse

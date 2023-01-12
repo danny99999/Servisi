@@ -18,7 +18,7 @@ async def func(request):
 		return web.json_response({"naziv": "servis2", "status": "OK", "servis4 odgovori": odgovori}, status = 200)
 
 	except Exception as e:
-		return web.json_response({"naziv": "servis3", "error": str(e)}, status = 500)
+		return web.json_response({"naziv": "servis2", "error": str(e)}, status = 500)
 
 app = web.Application()
 
